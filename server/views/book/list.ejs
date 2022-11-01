@@ -1,0 +1,57 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/main_nav'); -%>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link href="Content/app.css" rel="stylesheet" />
+</head>
+<style>
+ Body{
+      background-image: url('./Assets/Images/background.jpg');
+ }
+ </style>
+ 
+<div>
+    <h2 class ="list">Welcome to  Contacts</h2>
+
+</div>
+<main class="container">
+<div class="row">
+    <div class="col-md-offset-3 col md-8">
+        
+        <h3>Contacts</h3>
+        <%if(typeof displayName =='string' && displayName){%>
+        <a href="/bookList/add" class="btn btn-primary" role="button">
+            <i class ="fas fa-plus-circle"></i>ADD A CONTACT</a>
+            <%}%>
+        <br>
+        <table class = "table table-bordered table-striped table-hover">
+            <tr>
+
+                <th class="text-content col-2">NAME</th>
+                <th class="text-content col-2">NUMBER</th>
+                <th class="text-content col-1">E-MAIL</th>
+                <%if(typeof displayName =='string' && displayName){%>
+                <th class="text-content col-1"></th>
+                <th class="text-content col-1"></th>
+                <%}%>
+                </tr>
+           <% for(let count = 0; count<BookList.length; count++){ %>
+            <tr>
+                <td class = "text-center col-2"><%=BookList[count].Name%></td>
+                <td class = "text-center col-2"><%=BookList[count].Number%></td>
+                <td class = "text-center col-1"><%=BookList[count].Email%></td>
+                <%if(typeof displayName =='string' && displayName){%>
+                <td class ="text-center col-1"><a href="/bookList/edit/<%=BookList[count]._id%>" class="btn btn-primary"><i class="fas fa-pencil-alt"></i>UPDATE</a></td>
+                <td class ="text-center col-1"><a href="/bookList/delete/<%=BookList[count]._id%>" class="btn btn-danger"><i class="fas fa-trash-alt"></i>DELETE</a></td>    
+            <%}%>
+            </tr>
+                <%}%>
+            </table>
+
+        </div>
+    </div>
+    </main>
